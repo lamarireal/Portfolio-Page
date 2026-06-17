@@ -1,0 +1,9 @@
+{% if all_projects %}
+    <ul>
+    {% for project in all_projects %}
+        <li><a href="{% url 'mainapp:project_detail' project.id %}">{{ project.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No projects available.</p>
+{% endif %}

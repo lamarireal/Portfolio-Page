@@ -1,0 +1,32 @@
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+    <a href="{% url 'index' %}">← Вернуться к проектам</a>
+{% else %}
+    <div class="project-detail">
+        <h1>{{ project.title }}</h1>
+        
+        {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" style="max-width: 100%; height: auto;">
+        {% endif %}
+        
+        <div class="project-meta">
+            <p><strong>Дата публикации:</strong> {{ project.pub_date|date:"d.m.Y H:i" }}</p>
+            {% if project.tags %}
+                <p><strong>Теги:</strong> {{ project.tags }}</p>
+            {% endif %}
+        </div>
+        
+        <div class="project-description">
+            <h2>Описание</h2>
+            <p>{{ project.description }}</p>
+        </div>
+        
+        {% if project.link %}
+            <div class="project-link">
+                <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Посмотреть проект →</a>
+            </div>
+        {% endif %}
+        
+        <a href="{% url 'mainapp:index' %}">← Вернуться к проектам</a>
+    </div>
+{% endif %}
