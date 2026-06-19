@@ -1,0 +1,157 @@
+/* ===================================
+   CSS файл для главной страницы портфолио
+   ===================================
+*/
+
+/* Сброс стилей */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #5b7065;
+  min-height: 100vh;
+  /* Градиент зафиксирован по высоте экрана, остальное залито темным цветом */
+  background: linear-gradient(180deg, #4d648d 0%, #1e1f26 40%, #1e1f26 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 270vh; /* Градиент только на первый экран */
+  background-color: #1e1f26;    /* Цвет, который будет ниже градиента */
+  overflow-x: hidden;
+}
+
+/* Анимация перехода с белого фона */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #4d648d;
+  z-index: -1;
+  animation: fadeOutWhite 2s ease-in-out forwards;
+}
+
+@keyframes fadeOutWhite {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Навигация «висящая» сверху */
+.nav-menu {
+  position: fixed;
+  top: 20px; /* Отступ от верхнего края, чтобы кнопка «висела» */
+  z-index: 1000;
+  background: transparent; /* Убрали фон */
+  box-shadow: none;        /* Убрали тень */
+  width: 100%;
+  padding: 15px 0;
+  animation: fadeInNav 1s ease-out forwards;
+  opacity: 0;
+}
+
+.nav-menu ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.nav-menu li {
+  font-size: 1.3em;
+  font-weight: 500;
+  color: #d0e1f9; /* Сделали белым для контраста с темным фоном */
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Легкая тень текста для читаемости */
+}
+
+.nav-menu li:hover {
+  color: #283655;
+}
+
+/* Анимация появления меню */
+@keyframes fadeInNav {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Главный экран */
+.main-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.intro { text-align: center; }
+.intro h1 { font-size: 3.5em; color: #1a1a1a; margin-bottom: 15px; }
+.intro p { font-size: 1.5em; color: #666; }
+
+/* Разделитель */
+.divider {
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent 0%, #ccc 50%, transparent 100%);
+  margin: 40px 0;
+}
+
+/* Секции */
+section {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 40px 20px;
+}
+
+section h2 {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Сетки навыков и проектов */
+.skills-grid, .projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.skill-card, .project-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.skill-card.animate, .project-card.animate {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .skills-grid, .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .nav-menu ul { flex-direction: column; gap: 10px; }
+  .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+  .intro h1 { font-size: 1.8em; }
+}
