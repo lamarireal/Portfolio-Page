@@ -1,0 +1,6 @@
+/* Links section specific styles */
+#links { padding: 40px 20px; }
+.links-list { text-align: center; }
+.links-list ul { list-style: none; display: inline-flex; gap: 20px; }
+.links-list a { color: #B8C1C7; text-decoration: none; }
+.links-list a:hover { color: #FFF; }

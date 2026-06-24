@@ -23,77 +23,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Подключение основного CSS файла с стилями для этой страницы -->
     <link rel="stylesheet" href="{% static 'mainapp/style.css' %}">
+    <!-- Секции: дополнительные стили разделов -->
+    <link rel="stylesheet" href="{% static 'mainapp/chronology.css' %}">
+    <link rel="stylesheet" href="{% static 'mainapp/projects.css' %}">
+    <link rel="stylesheet" href="{% static 'mainapp/links.css' %}">
 </head>
 
 <body>
-    <!--
-        Главный экран (первый раздел страницы)
-        Содержит навигацию и приветственное сообщение с информацией о разработчике
-    -->
-    <div class="main-screen">
-        <!--
-            Навигационное меню
-            Позволяет пользователю перемещаться по различным разделам страницы
-        -->
+    <div class="main-screen" id="home">
         <nav class="nav-menu">
-            <!-- Неупорядоченный список с пунктами меню -->
             <ul>
-                <!-- Пункт меню "Home" - главная страница -->
-                <li>Home</li>
-                <!-- Пункт меню "Projects" - раздел с проектами -->
-                <li>Projects</li>
-                <!-- Пункт меню "Resources" - ресурсы и полезные ссылки -->
-                <li>Resources</li>
-                <!-- Пункт меню "About me" - информация о разработчике -->
-                <li>About me</li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About me</a></li>
+                <li><a href="#chronology">Chronology</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#links">Links</a></li>
             </ul>
         </nav>
 
-        <!--
-            Секция приветствия и введения
-            Отображает имя разработчика и его профессиональное описание
-        -->
         <div class="intro">
-            <!-- Основной заголовок - имя разработчика -->
             <h1>Pysmak Artem</h1>
-            <!-- Подзаголовок - описание специализации -->
             <p>Software Developer | Backend & Automation Specialist</p>
         </div>
     </div>
 
     <!--
-        Разделитель между секциями
-        Визуальный элемент для отделения различных частей страницы
+        Боковая навигация для прокрутки
+        Появляется справа и отмечает текущий раздел страницы
     -->
-    <div class="divider"></div>
-
-    <!--
-        Секция с техническими навыками
-        Отображает карточки с различными технологиями и навыками разработчика
-    -->
-    <section class="skills-section">
-        <!-- Заголовок секции с навыками -->
-        <h2>My technical skills</h2>
-        <!--
-            Сетка для отображения карточек с навыками
-            Каждая карточка содержит информацию о одном навыке или технологии
-        -->
-        <div class="skills-grid">
-            <!--
-                Цикл для вывода всех навыков из контекста шаблона
-                Для каждого навыка подключается компонент skill_card.html
-            -->
-            {% for skill in skills %}
-                <!-- Включаем компонент карточки навыка с передачей объекта skill -->
-                {% include 'components/skill_card.html' with skill=skill %}
-            {% empty %}
-                <!-- Сообщение, если список навыков пуст -->
-                <p>No skills available</p>
-            {% endfor %}
-        </div>
-    </section>
+    <nav class="side-nav">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About me</a></li>
+        <li><a href="#chronology">Chronology</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#links">Links</a></li>
+      </ul>
+    </nav>
 
     <!--
         Разделитель между секциями
@@ -101,37 +68,26 @@
     -->
     <div class="divider"></div>
 
-    <!--
-        Секция с лучшими проектами
-        Отображает три лучших проекта разработчика с их описанием и деталями
-    -->
-    <section class="projects-section">
-        <!-- Заголовок секции с проектами -->
-        <h2>Best 3 Projects</h2>
-        <!--
-            Сетка для отображения карточек с проектами
-            Каждая карточка содержит информацию об одном проекте
-        -->
-        <div class="projects-grid">
-            <!--
-                Цикл для вывода трех лучших проектов из контекста шаблона
-                Для каждого проекта подключается компонент project_card.html
-            -->
-            {% for project in featured_projects %}
-                <!-- Включаем компонент карточки проекта с передачей объекта project -->
-                {% include 'components/project_card.html' with project=project %}
-            {% empty %}
-                <!-- Сообщение, если список проектов пуст -->
-                <p>No projects available</p>
-            {% endfor %}
-        </div>
+    <section id="about">
+      <h2>About me</h2>
+      <p>I build backend systems and automation pipelines with Python, Django, and Docker.</p>
     </section>
 
-    <!--
-        Подключение JavaScript файла
-        Содержит функциональность: плавная прокрутка, активация меню при прокрутке,
-        анимация элементов при прокрутке страницы
-    -->
+    <div class="divider"></div>
+
+        {% include 'mainapp/partials/chronology.html' %}
+
+    <div class="divider"></div>
+
+        {% include 'mainapp/partials/projects.html' %}
+
+    <div class="divider"></div>
+
+        {% include 'mainapp/partials/links.html' %}
+
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/chronology.js' %}"></script>
+    <script src="{% static 'js/projects.js' %}"></script>
+    <script src="{% static 'js/links.js' %}"></script>
 </body>
 </html>

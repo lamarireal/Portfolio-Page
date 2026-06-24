@@ -1,0 +1,4 @@
+/* Chronology section specific styles */
+#chronology { padding: 40px 20px; }
+.chronology-list { max-width: 900px; margin: 0 auto; color: #CFCFCF; }
+.chronology-list p { line-height: 1.6; }
