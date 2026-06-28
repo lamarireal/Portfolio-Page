@@ -1,4 +1,195 @@
-/* Chronology section specific styles */
-#chronology { padding: 40px 20px; }
-.chronology-list { max-width: 900px; margin: 0 auto; color: #CFCFCF; }
-.chronology-list p { line-height: 1.6; }
+/* ==========================================================================
+   Chronology Section Styles
+   ========================================================================== */
+
+#chronology { 
+  padding: 40px 20px; 
+}
+
+.chronology-list {
+  max-width: 960px;
+  margin: 0 auto;
+  color: #D9D4CC;
+}
+
+/* Контейнер таймлайна (обычный flex-поток сверху вниз) */
+.timeline {
+  position: relative;
+  margin-top: 30px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Центральная осевая линия */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(241, 233, 225, 0.8), rgba(141, 160, 168, 0.3));
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Базовый элемент таймлайна */
+.timeline-item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin-top: 24px; /* Стандартный отступ между карточками */
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(34px) scale(0.98);
+  filter: blur(6px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.2,.8,.2,1), filter 0.8s ease;
+  box-sizing: border-box;
+}
+
+/* Состояние при появлении (JS добавляет класс is-visible) */
+.timeline-item.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Выравнивание по сторонам */
+.timeline-item.left { justify-content: flex-start; }
+.timeline-item.right { justify-content: flex-end; }
+
+
+/* ==========================================================================
+   Умные отступы (Магия подтягивания карточек)
+   ========================================================================== */
+
+/* Если сторона МЕНЯЕТСЯ (после левой идет правая, или наоборот), 
+   мы подтягиваем карточку выше с помощью отрицательного margin.
+   Она займет свободное визуальное пространство напротив предыдущего блока.
+*/
+.timeline-item.left + .timeline-item.right,
+.timeline-item.right + .timeline-item.left {
+  margin-top: -140px; /* Регулируйте это значение под среднюю высоту ваших карточек */
+}
+
+/* Если карточки идут ПОДРЯД на одной стороне (левая за левой, правая за правой),
+   возвращаем им стандартный комфортный отступ, чтобы они не накладывались друг на друга.
+*/
+.timeline-item.left + .timeline-item.left,
+.timeline-item.right + .timeline-item.right {
+  margin-top: 36px;
+}
+
+
+/* ==========================================================================
+   Элементы карточки (Точки, Сетка, Стили)
+   ========================================================================== */
+
+/* Точки на линии */
+.timeline-point {
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #F1E9E1;
+  border: 3px solid #06151E;
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 6px rgba(241, 233, 225, 0.12);
+  z-index: 2;
+}
+
+/* Сама карточка контента */
+.timeline-card {
+  width: calc(50% - 32px); /* Занимает ровно половину ширины минус отступ до линии */
+  padding: 20px 22px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  line-height: 1.7;
+  box-sizing: border-box;
+}
+
+.timeline-header {
+  margin-bottom: 12px;
+}
+
+.timeline-date {
+  display: inline-block;
+  margin-bottom: 6px;
+  color: #8DA0A8;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+}
+
+.timeline-card h3 {
+  color: #F1E9E1;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.timeline-image {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 12px 0;
+}
+
+.timeline-description {
+  margin: 10px 0 8px;
+}
+
+.timeline-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: #B8C1C7;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.timeline-link:hover {
+  color: #F1E9E1;
+}
+
+
+/* ==========================================================================
+   Адаптивность (Мобильные устройства)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Сдвигаем линию влево */
+  .timeline::before {
+    left: 18px;
+    transform: none;
+  }
+
+  /* Все элементы выстраиваем по левому краю в одну колонку */
+  .timeline-item {
+    justify-content: flex-start;
+    padding-left: 36px;
+  }
+
+  /* Сбрасываем отрицательные маргины, так как на мобилках всё идет строго друг за другом */
+  .timeline-item.left + .timeline-item.right,
+  .timeline-item.right + .timeline-item.left,
+  .timeline-item.left + .timeline-item.left,
+  .timeline-item.right + .timeline-item.right {
+    margin-top: 24px;
+  }
+
+  /* Сдвигаем точки к левой линии */
+  .timeline-point {
+    left: 18px;
+    transform: translateX(-50%);
+  }
+
+  /* Карточки занимают всю ширину экрана */
+  .timeline-card {
+    width: 100%;
+  }
+}

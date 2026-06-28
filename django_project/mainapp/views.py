@@ -1,10 +1,15 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Project
+from .models import ChronologyEntry, Project
+
 
 # Create your views here.
 def index(request):
     all_projects = Project.objects.all().order_by('-pub_date')
-    context = {"all_projects": all_projects}
+    chronology_entries = ChronologyEntry.objects.all().order_by('date_label')
+    context = {
+        "all_projects": all_projects,
+        "chronology_entries": chronology_entries,
+    }
     return render(request, 'mainapp/index.html', context)
 
 def project_detail(request, project_id):

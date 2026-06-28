@@ -3,6 +3,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
+
 class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
@@ -13,6 +14,27 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
-    
+
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
+
+class ChronologyEntry(models.Model):
+    SIDE_CHOICES = [
+        ('left', 'Left'),
+        ('right', 'Right'),
+    ]
+
+    title = models.CharField(max_length=200)
+    date_label = models.DateTimeField("date published")
+    description = models.TextField()
+    image = models.ImageField(upload_to='chronology_images/', blank=True)
+    video_url = models.URLField(blank=True)
+    link = models.URLField(blank=True)
+    side = models.CharField(max_length=10, choices=SIDE_CHOICES, default='right')
+
+    class Meta:
+        ordering = ['date_label']
+
+    def __str__(self):
+        return f"{self.title} ({self.date_label})"
