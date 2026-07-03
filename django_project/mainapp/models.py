@@ -19,6 +19,18 @@ class Project(models.Model):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
 
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
+    logo = models.ImageField(upload_to='skill_logos/', blank=True, null=True)
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.name
+
+
 class ChronologyEntry(models.Model):
     SIDE_CHOICES = [
         ('left', 'Left'),

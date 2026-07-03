@@ -1,0 +1,21 @@
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills-container">
+    <div class="skills-gallery">
+      {% for skill in all_skills %}
+        <div class="skill-badge" style="--skill-index: {{ forloop.counter0 }}">
+          <div class="skill-badge-content">
+            {% if skill.logo %}
+              <img src="{{ skill.logo.url }}" alt="{{ skill.name }}" class="skill-logo">
+            {% else %}
+              <div class="skill-logo-placeholder">{{ skill.name|first }}</div>
+            {% endif %}
+            <span class="skill-name">{{ skill.name }}</span>
+          </div>
+        </div>
+      {% empty %}
+        <p class="no-skills">No skills added yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

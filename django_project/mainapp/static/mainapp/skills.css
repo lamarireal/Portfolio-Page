@@ -1,0 +1,224 @@
+/* ===================================
+   CSS файл для раздела Skills
+   Минималистичная галерея плашек с логотипами
+   =================================== */
+
+#skills {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#skills h2 {
+  font-size: 2.5em;
+  margin-bottom: 50px;
+  color: #E0E0E0;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.skills-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== SKILLS GALLERY ===== */
+.skills-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.skill-badge {
+  --skill-index: 0;
+  
+  /* Поочередное появление при загрузке */
+  animation: slideInBadge 0.5s ease-out forwards;
+  animation-delay: calc(var(--skill-index) * 0.08s);
+  opacity: 0;
+}
+
+@keyframes slideInBadge {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skill-badge-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(122, 159, 191, 0.2);
+  border-radius: 8px;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.skill-badge:hover .skill-badge-content {
+  /* Выдвижение вперед: масштаб + яркая тень */
+  transform: scale(1.12);
+  background: rgba(122, 159, 191, 0.12);
+  border-color: rgba(122, 159, 191, 0.5);
+  box-shadow: 0 8px 24px rgba(122, 159, 191, 0.25);
+}
+
+/* ===== SKILL LOGO ===== */
+.skill-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.skill-badge:hover .skill-logo {
+  transform: scale(1.1);
+}
+
+/* Плейсхолдер для логотипов */
+.skill-logo-placeholder {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #7A9FBF, #5A8FAE);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(122, 159, 191, 0.2);
+}
+
+/* ===== SKILL NAME ===== */
+.skill-name {
+  font-size: 0.95em;
+  color: #D0D0D0;
+  font-weight: 400;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+.skill-badge:hover .skill-name {
+  color: #FFFFFF;
+}
+
+/* Текст при отсутствии навыков */
+.no-skills {
+  color: #A0A0A0;
+  font-size: 1.1em;
+  padding: 40px 20px;
+}
+
+/* ===== АДАПТИВНЫЙ ДИЗАЙН ===== */
+@media (max-width: 1024px) {
+  .skill-badge-content {
+    padding: 9px 16px;
+    gap: 10px;
+  }
+
+  .skill-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .skill-logo-placeholder {
+    width: 28px;
+    height: 28px;
+    font-size: 0.85em;
+  }
+
+  .skill-name {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 768px) {
+  #skills {
+    padding: 50px 15px;
+  }
+
+  #skills h2 {
+    font-size: 2em;
+    margin-bottom: 40px;
+  }
+
+  .skills-gallery {
+    gap: 15px;
+  }
+
+  .skill-badge-content {
+    padding: 8px 14px;
+    gap: 9px;
+    border-radius: 6px;
+  }
+
+  .skill-logo {
+    width: 26px;
+    height: 26px;
+  }
+
+  .skill-logo-placeholder {
+    width: 26px;
+    height: 26px;
+    font-size: 0.8em;
+  }
+
+  .skill-name {
+    font-size: 0.85em;
+  }
+
+  .skill-badge:hover .skill-badge-content {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 480px) {
+  #skills {
+    padding: 40px 10px;
+  }
+
+  #skills h2 {
+    font-size: 1.6em;
+    margin-bottom: 30px;
+  }
+
+  .skills-gallery {
+    gap: 12px;
+  }
+
+  .skill-badge-content {
+    padding: 7px 12px;
+    gap: 8px;
+    border-radius: 5px;
+  }
+
+  .skill-logo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .skill-logo-placeholder {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75em;
+  }
+
+  .skill-name {
+    font-size: 0.8em;
+  }
+}
+
+

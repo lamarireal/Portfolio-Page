@@ -23,9 +23,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'mainapp/style.css' %}">
+    <link rel="stylesheet" href="{% static 'mainapp/main.css' %}">
     <!-- Секции: дополнительные стили разделов -->
     <link rel="stylesheet" href="{% static 'mainapp/chronology.css' %}">
+    <link rel="stylesheet" href="{% static 'mainapp/skills.css' %}">
     <link rel="stylesheet" href="{% static 'mainapp/projects.css' %}">
     <link rel="stylesheet" href="{% static 'mainapp/links.css' %}">
 </head>
@@ -37,6 +38,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About me</a></li>
                 <li><a href="#chronology">Chronology</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#links">Links</a></li>
             </ul>
@@ -57,6 +59,7 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About me</a></li>
         <li><a href="#chronology">Chronology</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#links">Links</a></li>
       </ul>
@@ -88,14 +91,19 @@
 
     <div class="divider"></div>
 
+        {% include 'mainapp/partials/skills.html' %}
+
+    <div class="divider"></div>
+        
         {% include 'mainapp/partials/projects.html' %}
 
     <div class="divider"></div>
 
         {% include 'mainapp/partials/links.html' %}
 
-    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/chronology.js' %}"></script>
+    <script src="{% static 'js/skills.js' %}"></script>
     <script src="{% static 'js/projects.js' %}"></script>
     <script src="{% static 'js/links.js' %}"></script>
 </body>
