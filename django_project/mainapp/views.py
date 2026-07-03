@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
+
 from .models import ChronologyEntry, Project, Skill
 
 
@@ -15,11 +17,17 @@ def index(request):
     return render(request, 'mainapp/index.html', context)
 
 def project_detail(request, project_id):
+    return_to = request.GET.get('from', '')
+    back_url = reverse('mainapp:index')
+    if return_to:
+        back_url = f"{reverse('mainapp:index')}#{return_to}"
+
     try:
         project = Project.objects.get(pk=project_id)
     except Project.DoesNotExist:
-        return render(request, 'mainapp/project_details.html', {'error': 'Project not found.'})
-    context = {"project": project}
+        return render(request, 'mainapp/project_details.html', {'error': 'Project not found.', 'back_url': back_url})
+
+    context = {"project": project, "back_url": back_url}
     return render(request, 'mainapp/project_details.html', context)
 
 def my_library(request, project_id):

@@ -18,6 +18,13 @@ class Project(models.Model):
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
+    def get_tag_list(self):
+        if not self.tags:
+            return []
+
+        raw_tags = self.tags.replace(';', ',').replace('|', ',')
+        return [tag.strip() for tag in raw_tags.split(',') if tag.strip()]
+
 
 class Skill(models.Model):
     name = models.CharField(max_length=100)

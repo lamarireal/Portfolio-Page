@@ -1,32 +1,63 @@
-{% if error %}
-    <p style="color: red;">{{ error }}</p>
-    <a href="{% url 'index' %}">← Вернуться к проектам</a>
-{% else %}
-    <div class="project-detail">
-        <h1>{{ project.title }}</h1>
-        
-        {% if project.image %}
-            <img src="{{ project.image.url }}" alt="{{ project.title }}" style="max-width: 100%; height: auto;">
-        {% endif %}
-        
-        <div class="project-meta">
-            <p><strong>Дата публикации:</strong> {{ project.pub_date|date:"d.m.Y H:i" }}</p>
-            {% if project.tags %}
-                <p><strong>Теги:</strong> {{ project.tags }}</p>
-            {% endif %}
-        </div>
-        
-        <div class="project-description">
-            <h2>Описание</h2>
-            <p>{{ project.description }}</p>
-        </div>
-        
-        {% if project.link %}
-            <div class="project-link">
-                <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Посмотреть проект →</a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.title }} | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'mainapp/main.css' %}">
+    <link rel="stylesheet" href="{% static 'mainapp/project_details.css' %}">
+</head>
+<body>
+    <main class="project-details-page">
+        {% if error %}
+            <div class="project-detail-shell">
+                <div class="project-detail-empty">
+                    <p>{{ error }}</p>
+                    <div class="project-detail-actions">
+                        <a class="project-detail-back" href="{{ back_url }}">Back to portfolio</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="project-detail-shell">
+                <div class="project-detail-stage">
+                    <div class="project-detail-visual">
+                        {% if project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                        {% else %}
+                            <div class="project-card__image project-card__image--placeholder">No image</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="project-detail-content">
+                        <span class="project-detail-badge">Project spotlight</span>
+                        <h1 class="project-detail-title">{{ project.title }}</h1>
+                        <div class="project-detail-description">{{ project.description|linebreaks }}</div>
+
+                        <div class="project-detail-meta">
+                            <span class="project-detail-chip">Published {{ project.pub_date|date:"d.m.Y" }}</span>
+                            {% if project.get_tag_list %}
+                                {% for tag in project.get_tag_list %}
+                                    <span class="project-detail-chip">{{ tag }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+
+                        <div class="project-detail-actions">
+                            {% if project.link %}
+                                <a class="project-detail-link" href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Open project</a>
+                            {% endif %}
+                            <a class="project-detail-back" href="{{ back_url }}">Back to portfolio</a>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         {% endif %}
-        
-        <a href="{% url 'mainapp:index' %}">← Вернуться к проектам</a>
-    </div>
-{% endif %}
+    </main>
+</body>
+</html>

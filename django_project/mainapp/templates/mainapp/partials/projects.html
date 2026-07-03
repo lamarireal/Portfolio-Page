@@ -1,6 +1,36 @@
 <section id="projects">
   <h2>Projects</h2>
   <div class="projects-grid">
-    <p>Examples of backend and automation projects with brief descriptions and links.</p>
+    {% if all_projects %}
+      {% for project in all_projects %}
+        <a href="{% url 'mainapp:project_detail' project.pk %}?from=projects" class="project-card">
+          {% if project.image and project.image.name %}
+            {% if project.image.url %}
+              <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-card__image">
+            {% endif %}
+          {% else %}
+            <div class="project-card__image project-card__image--placeholder">No image</div>
+          {% endif %}
+
+          <div class="project-card__body">
+            <h3 class="project-card__title">{{ project.title }}</h3>
+
+            {% if project.get_tag_list %}
+              <div class="project-card__tags">
+                {% for tag in project.get_tag_list %}
+                  <span class="project-card__tag">{{ tag }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <div class="project-card__footer">
+              <span class="project-card__date">{{ project.pub_date|date:"d.m.Y" }}</span>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    {% else %}
+      <p>Examples of backend and automation projects with brief descriptions and links.</p>
+    {% endif %}
   </div>
 </section>
