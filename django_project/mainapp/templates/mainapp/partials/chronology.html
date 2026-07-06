@@ -8,7 +8,7 @@
             <div class="timeline-point"></div>
             <div class="timeline-card">
               <div class="timeline-header">
-                <span class="timeline-date">{{ entry.date_label }}</span>
+                <span class="timeline-date">{{ entry.date_label|date:"d.m.Y" }}</span>
                 <h3>{{ entry.title }}</h3>
               </div>
 

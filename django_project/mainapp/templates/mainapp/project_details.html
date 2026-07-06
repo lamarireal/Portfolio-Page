@@ -51,9 +51,8 @@
                             {% if project.link %}
                                 <a class="project-detail-link" href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Open project</a>
                             {% endif %}
-                            <a class="project-detail-back" href="{{ back_url }}">Back to portfolio</a>
+                            <button type="button" class="project-detail-back" onclick="window.history.back()">Back to portfolio</button>
                         </div>
-
                     </div>
                 </div>
             </div>

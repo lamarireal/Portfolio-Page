@@ -83,3 +83,17 @@ class ProjectCardViewTests(TestCase):
         self.assertContains(response, '<p')
         self.assertContains(response, 'First paragraph')
         self.assertContains(response, 'Second paragraph')
+
+    def test_project_details_alias_route_renders_detail_page(self):
+        project = Project.objects.create(
+            title="Alias project",
+            description="Accessible via alias route.",
+            tags="django",
+            image="project_images/sample.png",
+            pub_date=timezone.now(),
+        )
+
+        response = self.client.get(f'/project_details/{project.pk}/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Alias project')
