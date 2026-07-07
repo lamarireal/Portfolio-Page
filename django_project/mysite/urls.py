@@ -25,5 +25,11 @@ urlpatterns = [
     path('main/', include('mainapp.urls')),
 ]
 
-if settings.DEBUG:
+import os
+
+# In development Django serves media files when DEBUG=True. For simple
+# production setups where you cannot configure a separate media server,
+# set DJANGO_SERVE_MEDIA=1 to let Django serve media (not recommended
+# for high-load public sites).
+if settings.DEBUG or os.environ.get('DJANGO_SERVE_MEDIA') == '1':
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -46,3 +46,7 @@ db.sqlite3
 # OS
 Thumbs.db
 .DS_Store
+
+# staticfiles
+staticfiles/
+django_project/staticfiles/
