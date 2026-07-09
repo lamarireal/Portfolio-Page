@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 import os
+from urllib.parse import parse_qsl, urlparse
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
@@ -28,7 +29,45 @@ def env_bool(name, default=False):
     val = os.environ.get(name)
     if val is None:
         return default
-    return str(val).lower() in ("1", "true", "yes")
+    return str(val).strip().lower() in ("1", "true", "yes", "on")
+
+
+def env_list(name, default=None):
+    val = os.environ.get(name)
+    if val is None:
+        return default or []
+    return [item.strip() for item in val.split(',') if item.strip()]
+
+
+def database_from_url(url):
+    parsed = urlparse(url)
+
+    if parsed.scheme == 'sqlite':
+        path = parsed.path
+        if parsed.netloc:
+            path = f'//{parsed.netloc}{parsed.path}'
+        return {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': path,
+        }
+
+    engines = {
+        'postgres': 'django.db.backends.postgresql',
+        'postgresql': 'django.db.backends.postgresql',
+    }
+
+    if parsed.scheme not in engines:
+        raise ImproperlyConfigured(f'Unsupported DATABASE_URL scheme: {parsed.scheme}')
+
+    return {
+        'ENGINE': engines[parsed.scheme],
+        'NAME': parsed.path.lstrip('/'),
+        'USER': parsed.username or '',
+        'PASSWORD': parsed.password or '',
+        'HOST': parsed.hostname or '',
+        'PORT': str(parsed.port or ''),
+        'OPTIONS': dict(parse_qsl(parsed.query)),
+    }
 
 # SECURITY: secret key must come from environment in production
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
@@ -40,7 +79,10 @@ if not SECRET_KEY and not DEBUG:
     raise ImproperlyConfigured('The DJANGO_SECRET_KEY environment variable must be set in production')
 
 # Hosts allowed to serve the app (comma-separated in DJANGO_ALLOWED_HOSTS)
-ALLOWED_HOSTS = [h.strip() for h in os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',') if h.strip()]
+ALLOWED_HOSTS = env_list('DJANGO_ALLOWED_HOSTS')
+
+if not DEBUG and not ALLOWED_HOSTS:
+    raise ImproperlyConfigured('DJANGO_ALLOWED_HOSTS must be set in production')
 
 
 # Application definition
@@ -53,8 +95,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp.apps.MainappConfig',
-    'django_extensions',    
 ]
+
+if DEBUG:
+    INSTALLED_APPS.append('django_extensions')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -94,8 +138,10 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
 DATABASES = {
-    'default': {
+    'default': database_from_url(DATABASE_URL) if DATABASE_URL else {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
@@ -148,12 +194,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'mainapp', 'static'),
-]
+PROJECT_STATIC_DIR = BASE_DIR / 'static'
+STATICFILES_DIRS = [PROJECT_STATIC_DIR] if PROJECT_STATIC_DIR.exists() else []
 
-# Use WhiteNoise's compressed manifest storage in production if available
-STATICFILES_STORAGE = os.environ.get('DJANGO_STATICFILES_STORAGE', 'whitenoise.storage.CompressedManifestStaticFilesStorage')
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': os.environ.get(
+            'DJANGO_STATICFILES_STORAGE',
+            'whitenoise.storage.CompressedManifestStaticFilesStorage',
+        ),
+    },
+}
 
 # Media files (user-uploaded). Default to project root so existing folders
 # (project_images, chronology_images, skill_logos) continue to work unless
@@ -171,6 +225,8 @@ SECURE_SSL_REDIRECT = env_bool('DJANGO_SECURE_SSL_REDIRECT', not DEBUG)
 # Cookie security
 SESSION_COOKIE_SECURE = env_bool('DJANGO_SESSION_COOKIE_SECURE', not DEBUG)
 CSRF_COOKIE_SECURE = env_bool('DJANGO_CSRF_COOKIE_SECURE', not DEBUG)
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = env_bool('DJANGO_CSRF_COOKIE_HTTPONLY', False)
 
 # HSTS (HTTP Strict Transport Security)
 SECURE_HSTS_SECONDS = int(os.environ.get('DJANGO_SECURE_HSTS_SECONDS', '31536000')) if not DEBUG else 0
@@ -180,4 +236,6 @@ SECURE_HSTS_PRELOAD = env_bool('DJANGO_SECURE_HSTS_PRELOAD', True)
 # Trusted origins for CSRF (comma-separated, include scheme e.g. https://example.com)
 CSRF_TRUSTED_ORIGINS = [u.strip() for u in os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', '').split(',') if u.strip()]
 
-# Allow overriding the default Content Security Policy or related headers via env if needed
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_REFERRER_POLICY = os.environ.get('DJANGO_SECURE_REFERRER_POLICY', 'same-origin')
+X_FRAME_OPTIONS = os.environ.get('DJANGO_X_FRAME_OPTIONS', 'DENY')
