@@ -1,0 +1,120 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: prtf_site 1.0\n"
+"Language: ua\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Portfolio of a professional Software Developer specializing in Backend Development and Automation"
+msgstr "Портфоліо розробника програмного забезпечення, що спеціалізується на бекенді та автоматизації"
+
+msgid "My Portfolio - Web Development Projects"
+msgstr "Моє портфоліо - проєкти веброзробки"
+
+msgid "Home"
+msgstr "Головна"
+
+msgid "About me"
+msgstr "Про мене"
+
+msgid "Chronology"
+msgstr "Хронологія"
+
+msgid "Skills"
+msgstr "Навички"
+
+msgid "Projects"
+msgstr "Проєкти"
+
+msgid "Links"
+msgstr "Посилання"
+
+msgid "Software Developer | Backend & Automation Specialist"
+msgstr "Розробник програмного забезпечення | Спеціаліст із бекенду та автоматизації"
+
+msgid "Hi! I'm Artem, I'm 20 years old, and I'm from Ukraine. I've been living in Spain since 2022, and my professional journey began here. I'm a developer who enjoys understanding complex systems and turning ideas into robust and well-thought-out solutions. My IT career began with professional training in cross-platform application development, and my true passion for programming was born at 42 Urduliz."
+msgstr "Привіт! Я Артем, мені 20 років, і я з України. З 2022 року я живу в Іспанії, і саме тут почався мій професійний шлях. Я розробник, якому подобається розбиратися у складних системах і перетворювати ідеї на надійні та продумані рішення. Моя кар'єра в IT почалася з професійного навчання з розробки кросплатформних застосунків, а справжня пристрасть до програмування народилася в 42 Urduliz."
+
+msgid "There, working with pure C and C++ (and more recently, Python) taught me not only how to write code, but also how to understand the deeper mechanics of hardware, memory, and performance. I'm disciplined, focused, and comfortable handling multiple priorities at once, especially when the work demands precision and calm under pressure."
+msgstr "Там робота з чистими C і C++ (а останнім часом і з Python) навчила мене не лише писати код, а й глибше розуміти механіку апаратного забезпечення, пам'яті та продуктивності. Я дисциплінований, зосереджений і впевнено працюю з кількома пріоритетами одночасно, особливо коли завдання потребує точності та спокою під тиском."
+
+msgid "What I Do"
+msgstr "Що я роблю"
+
+msgid "Systems & Low-Level Programming:"
+msgstr "Системне та низькорівневе програмування:"
+
+msgid "Confident in C/C++, with a strong interest in algorithms, optimization, and building efficient solutions."
+msgstr "Впевнено працюю з C/C++, цікавлюся алгоритмами, оптимізацією та створенням ефективних рішень."
+
+msgid "Application Development:"
+msgstr "Розробка застосунків:"
+
+msgid "Creating modern mobile and web apps with Kotlin, Jetpack Compose, Python, and Java, including a freelance platform tailored for the construction sector."
+msgstr "Створюю сучасні мобільні та вебзастосунки з Kotlin, Jetpack Compose, Python і Java, зокрема freelance-платформу для будівельної сфери."
+
+msgid "DevOps & Linux:"
+msgstr "DevOps і Linux:"
+
+msgid "A genuine Linux enthusiast who enjoys customizing environments, managing servers, and bringing local services to life."
+msgstr "Я справжній прихильник Linux: люблю налаштовувати середовища, адмініструвати сервери та запускати локальні сервіси."
+
+msgid "Project"
+msgstr "Проєкт"
+
+msgid "Portfolio"
+msgstr "Портфоліо"
+
+msgid "Back to portfolio"
+msgstr "Повернутися до портфоліо"
+
+msgid "No image"
+msgstr "Без зображення"
+
+msgid "Project spotlight"
+msgstr "Обраний проєкт"
+
+msgid "Published"
+msgstr "Опубліковано"
+
+msgid "Open project"
+msgstr "Відкрити проєкт"
+
+msgid "Examples of backend and automation projects with brief descriptions and links."
+msgstr "Приклади бекенд- та автоматизаційних проєктів з короткими описами й посиланнями."
+
+msgid "Watch video"
+msgstr "Дивитися відео"
+
+msgid "Open link"
+msgstr "Відкрити посилання"
+
+msgid "Timeline of my development journey, key projects, and growth as a backend engineer."
+msgstr "Хронологія мого шляху в розробці, ключових проєктів і зростання як backend-інженера."
+
+msgid "No skills added yet."
+msgstr "Навички ще не додано."
+
+msgid "Contact"
+msgstr "Контакт"
+
+msgid "Close contact information"
+msgstr "Закрити контактну інформацію"
+
+msgid "Contact me"
+msgstr "Зв'язатися зі мною"
+
+msgid "Software Developer"
+msgstr "Розробник програмного забезпечення"
+
+msgid "Phone number:"
+msgstr "Номер телефону:"
+
+msgid "Switch language to %(language)s"
+msgstr "Перемкнути мову на %(language)s"
+
+msgid "Project not found."
+msgstr "Проєкт не знайдено."
+
+msgid "Language selector"
+msgstr "Вибір мови"

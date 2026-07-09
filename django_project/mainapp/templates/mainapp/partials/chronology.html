@@ -1,5 +1,6 @@
+{% load i18n %}
 <section id="chronology">
-  <h2>Chronology</h2>
+  <h2>{% trans 'Chronology' %}</h2>
   <div class="chronology-list">
     {% if chronology_entries %}
       <div class="timeline">
@@ -9,30 +10,30 @@
             <div class="timeline-card">
               <div class="timeline-header">
                 <span class="timeline-date">{{ entry.date_label|date:"d.m.Y" }}</span>
-                <h3>{{ entry.title }}</h3>
+                <h3>{{ entry.localized_title }}</h3>
               </div>
 
               {% if entry.image and entry.image.name %}
                 {% if entry.image.url %}
-                  <img src="{{ entry.image.url }}" alt="{{ entry.title }}" class="timeline-image">
+                  <img src="{{ entry.image.url }}" alt="{{ entry.localized_title }}" class="timeline-image">
                 {% endif %}
               {% endif %}
 
-              <p class="timeline-description">{{ entry.description }}</p>
+              <p class="timeline-description">{{ entry.localized_description }}</p>
 
               {% if entry.video_url %}
-                <a href="{{ entry.video_url }}" target="_blank" rel="noopener noreferrer" class="timeline-link">Watch video</a>
+                <a href="{{ entry.video_url }}" target="_blank" rel="noopener noreferrer" class="timeline-link">{% trans 'Watch video' %}</a>
               {% endif %}
 
               {% if entry.link %}
-                <a href="{{ entry.link }}" target="_blank" rel="noopener noreferrer" class="timeline-link">Open link</a>
+                <a href="{{ entry.link }}" target="_blank" rel="noopener noreferrer" class="timeline-link">{% trans 'Open link' %}</a>
               {% endif %}
             </div>
           </article>
         {% endfor %}
       </div>
     {% else %}
-      <p>Timeline of my development journey, key projects, and growth as a backend engineer.</p>
+      <p>{% trans 'Timeline of my development journey, key projects, and growth as a backend engineer.' %}</p>
     {% endif %}
   </div>
 </section>

@@ -1,19 +1,20 @@
+{% load i18n %}
 <section id="projects">
-  <h2>Projects</h2>
+  <h2>{% trans 'Projects' %}</h2>
   <div class="projects-grid">
     {% if all_projects %}
       {% for project in all_projects %}
         <a href="{% url 'mainapp:project_detail' project.pk %}?from=projects" class="project-card">
           {% if project.image and project.image.name %}
             {% if project.image.url %}
-              <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-card__image">
+              <img src="{{ project.image.url }}" alt="{{ project.localized_title }}" class="project-card__image">
             {% endif %}
           {% else %}
-            <div class="project-card__image project-card__image--placeholder">No image</div>
+            <div class="project-card__image project-card__image--placeholder">{% trans 'No image' %}</div>
           {% endif %}
 
           <div class="project-card__body">
-            <h3 class="project-card__title">{{ project.title }}</h3>
+            <h3 class="project-card__title">{{ project.localized_title }}</h3>
 
             {% if project.get_tag_list %}
               <div class="project-card__tags">
@@ -30,7 +31,7 @@
         </a>
       {% endfor %}
     {% else %}
-      <p>Examples of backend and automation projects with brief descriptions and links.</p>
+      <p>{% trans 'Examples of backend and automation projects with brief descriptions and links.' %}</p>
     {% endif %}
   </div>
 </section>

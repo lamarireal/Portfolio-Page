@@ -1,0 +1,120 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: prtf_site 1.0\n"
+"Language: es\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Portfolio of a professional Software Developer specializing in Backend Development and Automation"
+msgstr "Portfolio de un desarrollador de software especializado en backend y automatización"
+
+msgid "My Portfolio - Web Development Projects"
+msgstr "Mi portfolio - Proyectos de desarrollo web"
+
+msgid "Home"
+msgstr "Inicio"
+
+msgid "About me"
+msgstr "Sobre mí"
+
+msgid "Chronology"
+msgstr "Cronología"
+
+msgid "Skills"
+msgstr "Habilidades"
+
+msgid "Projects"
+msgstr "Proyectos"
+
+msgid "Links"
+msgstr "Enlaces"
+
+msgid "Software Developer | Backend & Automation Specialist"
+msgstr "Desarrollador de software | Especialista en backend y automatización"
+
+msgid "Hi! I'm Artem, I'm 20 years old, and I'm from Ukraine. I've been living in Spain since 2022, and my professional journey began here. I'm a developer who enjoys understanding complex systems and turning ideas into robust and well-thought-out solutions. My IT career began with professional training in cross-platform application development, and my true passion for programming was born at 42 Urduliz."
+msgstr "¡Hola! Soy Artem, tengo 20 años y soy de Ucrania. Vivo en España desde 2022, y aquí empezó mi camino profesional. Soy un desarrollador al que le gusta entender sistemas complejos y convertir ideas en soluciones sólidas y bien pensadas. Mi carrera en IT empezó con una formación profesional en desarrollo de aplicaciones multiplataforma, y mi verdadera pasión por la programación nació en 42 Urduliz."
+
+msgid "There, working with pure C and C++ (and more recently, Python) taught me not only how to write code, but also how to understand the deeper mechanics of hardware, memory, and performance. I'm disciplined, focused, and comfortable handling multiple priorities at once, especially when the work demands precision and calm under pressure."
+msgstr "Allí, trabajar con C y C++ puros (y más recientemente con Python) me enseñó no solo a escribir código, sino también a entender mejor la mecánica del hardware, la memoria y el rendimiento. Soy disciplinado, enfocado y me siento cómodo gestionando varias prioridades a la vez, especialmente cuando el trabajo exige precisión y calma bajo presión."
+
+msgid "What I Do"
+msgstr "Qué hago"
+
+msgid "Systems & Low-Level Programming:"
+msgstr "Sistemas y programación de bajo nivel:"
+
+msgid "Confident in C/C++, with a strong interest in algorithms, optimization, and building efficient solutions."
+msgstr "Tengo confianza trabajando con C/C++, con un gran interés por los algoritmos, la optimización y la creación de soluciones eficientes."
+
+msgid "Application Development:"
+msgstr "Desarrollo de aplicaciones:"
+
+msgid "Creating modern mobile and web apps with Kotlin, Jetpack Compose, Python, and Java, including a freelance platform tailored for the construction sector."
+msgstr "Creo aplicaciones móviles y web modernas con Kotlin, Jetpack Compose, Python y Java, incluyendo una plataforma freelance adaptada al sector de la construcción."
+
+msgid "DevOps & Linux:"
+msgstr "DevOps y Linux:"
+
+msgid "A genuine Linux enthusiast who enjoys customizing environments, managing servers, and bringing local services to life."
+msgstr "Soy un auténtico entusiasta de Linux: disfruto personalizando entornos, administrando servidores y dando vida a servicios locales."
+
+msgid "Project"
+msgstr "Proyecto"
+
+msgid "Portfolio"
+msgstr "Portfolio"
+
+msgid "Back to portfolio"
+msgstr "Volver al portfolio"
+
+msgid "No image"
+msgstr "Sin imagen"
+
+msgid "Project spotlight"
+msgstr "Proyecto destacado"
+
+msgid "Published"
+msgstr "Publicado"
+
+msgid "Open project"
+msgstr "Abrir proyecto"
+
+msgid "Examples of backend and automation projects with brief descriptions and links."
+msgstr "Ejemplos de proyectos de backend y automatización con descripciones breves y enlaces."
+
+msgid "Watch video"
+msgstr "Ver vídeo"
+
+msgid "Open link"
+msgstr "Abrir enlace"
+
+msgid "Timeline of my development journey, key projects, and growth as a backend engineer."
+msgstr "Línea temporal de mi camino como desarrollador, proyectos clave y crecimiento como ingeniero backend."
+
+msgid "No skills added yet."
+msgstr "Todavía no se han añadido habilidades."
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Close contact information"
+msgstr "Cerrar información de contacto"
+
+msgid "Contact me"
+msgstr "Contáctame"
+
+msgid "Software Developer"
+msgstr "Desarrollador de software"
+
+msgid "Phone number:"
+msgstr "Número de teléfono:"
+
+msgid "Switch language to %(language)s"
+msgstr "Cambiar idioma a %(language)s"
+
+msgid "Project not found."
+msgstr "Proyecto no encontrado."
+
+msgid "Language selector"
+msgstr "Selector de idioma"

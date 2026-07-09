@@ -1,10 +1,10 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ project.title }} | Portfolio</title>
+    <title>{% if project %}{{ project.localized_title }}{% else %}{% trans 'Project' %}{% endif %} | {% trans 'Portfolio' %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
                 <div class="project-detail-empty">
                     <p>{{ error }}</p>
                     <div class="project-detail-actions">
-                        <a class="project-detail-back" href="{{ back_url }}">Back to portfolio</a>
+                        <a class="project-detail-back" href="{{ back_url }}">{% trans 'Back to portfolio' %}</a>
                     </div>
                 </div>
             </div>
@@ -27,19 +27,19 @@
                 <div class="project-detail-stage">
                     <div class="project-detail-visual">
                         {% if project.image %}
-                            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                            <img src="{{ project.image.url }}" alt="{{ project.localized_title }}">
                         {% else %}
-                            <div class="project-card__image project-card__image--placeholder">No image</div>
+                            <div class="project-card__image project-card__image--placeholder">{% trans 'No image' %}</div>
                         {% endif %}
                     </div>
 
                     <div class="project-detail-content">
-                        <span class="project-detail-badge">Project spotlight</span>
-                        <h1 class="project-detail-title">{{ project.title }}</h1>
-                        <div class="project-detail-description">{{ project.description|linebreaks }}</div>
+                        <span class="project-detail-badge">{% trans 'Project spotlight' %}</span>
+                        <h1 class="project-detail-title">{{ project.localized_title }}</h1>
+                        <div class="project-detail-description">{{ project.localized_description|linebreaks }}</div>
 
                         <div class="project-detail-meta">
-                            <span class="project-detail-chip">Published {{ project.pub_date|date:"d.m.Y" }}</span>
+                            <span class="project-detail-chip">{% trans 'Published' %} {{ project.pub_date|date:"d.m.Y" }}</span>
                             {% if project.get_tag_list %}
                                 {% for tag in project.get_tag_list %}
                                     <span class="project-detail-chip">{{ tag }}</span>
@@ -49,9 +49,9 @@
 
                         <div class="project-detail-actions">
                             {% if project.link %}
-                                <a class="project-detail-link" href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Open project</a>
+                                <a class="project-detail-link" href="{{ project.link }}" target="_blank" rel="noopener noreferrer">{% trans 'Open project' %}</a>
                             {% endif %}
-                            <button type="button" class="project-detail-back" onclick="window.history.back()">Back to portfolio</button>
+                            <button type="button" class="project-detail-back" onclick="window.history.back()">{% trans 'Back to portfolio' %}</button>
                         </div>
                     </div>
                 </div>

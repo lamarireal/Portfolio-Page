@@ -1,6 +1,6 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <!--
         Метаданные документа
@@ -10,10 +10,10 @@
     <!-- Мета-тег для адаптивного дизайна на мобильных устройствах -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Описание страницы для поисковых систем -->
-    <meta name="description" content="Portfolio of a professional Software Developer specializing in Backend Development and Automation">
+    <meta name="description" content="{% trans 'Portfolio of a professional Software Developer specializing in Backend Development and Automation' %}">
 
     <!-- Заголовок страницы - отображается в вкладке браузера -->
-    <title>My Portfolio - Web Development Projects</title>
+    <title>{% trans 'My Portfolio - Web Development Projects' %}</title>
 
     <!--
         Подключение шрифтов Google Fonts
@@ -32,21 +32,30 @@
 </head>
 
 <body>
+    <div class="ambient-scene" aria-hidden="true">
+        <span class="ambient-scene__beam ambient-scene__beam--one"></span>
+        <span class="ambient-scene__beam ambient-scene__beam--two"></span>
+        <span class="ambient-scene__line ambient-scene__line--one"></span>
+        <span class="ambient-scene__line ambient-scene__line--two"></span>
+        <span class="ambient-scene__mesh"></span>
+    </div>
+
     <div class="main-screen" id="home">
         <nav class="nav-menu">
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About me</a></li>
-                <li><a href="#chronology">Chronology</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#links">Links</a></li>
+                <li><a href="#home">{% trans 'Home' %}</a></li>
+                <li><a href="#about">{% trans 'About me' %}</a></li>
+                <li><a href="#chronology">{% trans 'Chronology' %}</a></li>
+                <li><a href="#skills">{% trans 'Skills' %}</a></li>
+                <li><a href="#projects">{% trans 'Projects' %}</a></li>
+                <li><a href="#links">{% trans 'Links' %}</a></li>
             </ul>
         </nav>
+        {% include 'mainapp/partials/language_switcher.html' %}
 
         <div class="intro">
             <h1>Pysmak Artem</h1>
-            <p>Software Developer | Backend & Automation Specialist</p>
+            <p>{% trans 'Software Developer | Backend & Automation Specialist' %}</p>
         </div>
     </div>
 
@@ -56,12 +65,12 @@
     -->
     <nav class="side-nav">
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About me</a></li>
-        <li><a href="#chronology">Chronology</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#links">Links</a></li>
+        <li><a href="#home">{% trans 'Home' %}</a></li>
+        <li><a href="#about">{% trans 'About me' %}</a></li>
+        <li><a href="#chronology">{% trans 'Chronology' %}</a></li>
+        <li><a href="#skills">{% trans 'Skills' %}</a></li>
+        <li><a href="#projects">{% trans 'Projects' %}</a></li>
+        <li><a href="#links">{% trans 'Links' %}</a></li>
       </ul>
     </nav>
 
@@ -72,16 +81,16 @@
     <div class="divider"></div>
 
     <section id="about" class="about-section">
-      <h2>About me</h2>
-      <p>Hi! I'm Artem, I'm 20 years old, and I'm from Ukraine. I've been living in Spain since 2022, and my professional journey began here. I'm a developer who enjoys understanding complex systems and turning ideas into robust and well-thought-out solutions. My IT career began with professional training in cross-platform application development, and my true passion for programming was born at 42 Urduliz.</p>
+      <h2>{% trans 'About me' %}</h2>
+      <p>{% trans "Hi! I'm Artem, I'm 20 years old, and I'm from Ukraine. I've been living in Spain since 2022, and my professional journey began here. I'm a developer who enjoys understanding complex systems and turning ideas into robust and well-thought-out solutions. My IT career began with professional training in cross-platform application development, and my true passion for programming was born at 42 Urduliz." %}</p>
 
-      <p>There, working with pure C and C++ (And more recently, Python) taught me not only how to write code, but also how to understand the deeper mechanics of hardware, memory, and performance. I’m disciplined, focused, and comfortable handling multiple priorities at once, especially when the work demands precision and calm under pressure.</p>
+      <p>{% trans "There, working with pure C and C++ (and more recently, Python) taught me not only how to write code, but also how to understand the deeper mechanics of hardware, memory, and performance. I'm disciplined, focused, and comfortable handling multiple priorities at once, especially when the work demands precision and calm under pressure." %}</p>
 
-      <h3>What I Do</h3>
+      <h3>{% trans 'What I Do' %}</h3>
       <ul>
-        <li><strong>Systems &amp; Low-Level Programming:</strong> Confident in C/C++, with a strong interest in algorithms, optimization, and building efficient solutions.</li>
-        <li><strong>Application Development:</strong> Creating modern mobile and web apps with Kotlin, Jetpack Compose, Python, and Java, including a freelance platform tailored for the construction sector.</li>
-        <li><strong>DevOps &amp; Linux:</strong> A genuine Linux enthusiast who enjoys customizing environments, managing servers, and bringing local services to life.</li>
+        <li><strong>{% trans 'Systems & Low-Level Programming:' %}</strong> {% trans 'Confident in C/C++, with a strong interest in algorithms, optimization, and building efficient solutions.' %}</li>
+        <li><strong>{% trans 'Application Development:' %}</strong> {% trans 'Creating modern mobile and web apps with Kotlin, Jetpack Compose, Python, and Java, including a freelance platform tailored for the construction sector.' %}</li>
+        <li><strong>{% trans 'DevOps & Linux:' %}</strong> {% trans 'A genuine Linux enthusiast who enjoys customizing environments, managing servers, and bringing local services to life.' %}</li>
       </ul>
     </section>
 

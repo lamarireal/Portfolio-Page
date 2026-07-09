@@ -1,0 +1,15 @@
+{% load i18n %}
+
+<nav class="language-switcher" aria-label="{% trans 'Language selector' %}">
+  {% for language in language_options %}
+    <a
+      href="{{ language.url }}"
+      class="language-switcher__option{% if language.is_active %} is-active{% endif %}"
+      lang="{{ language.code }}"
+      hreflang="{{ language.code }}"
+      aria-label="{% blocktrans with language=language.name %}Switch language to {{ language }}{% endblocktrans %}"
+    >
+      {{ language.code|upper }}
+    </a>
+  {% endfor %}
+</nav>
