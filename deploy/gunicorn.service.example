@@ -1,0 +1,19 @@
+[Unit]
+Description=Artem portfolio Gunicorn service
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/srv/artem-portfolio/current
+EnvironmentFile=/srv/artem-portfolio/current/django_project/.env
+ExecStart=/srv/artem-portfolio/venv/bin/gunicorn mysite.wsgi:application \
+  --chdir /srv/artem-portfolio/current/django_project \
+  --bind unix:/run/artem-portfolio.sock \
+  --workers 3 \
+  --timeout 60
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
