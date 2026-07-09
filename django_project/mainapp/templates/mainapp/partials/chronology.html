@@ -1,11 +1,11 @@
 {% load i18n %}
-<section id="chronology">
+<section id="chronology" class="chronology-section">
   <h2>{% trans 'Chronology' %}</h2>
   <div class="chronology-list">
     {% if chronology_entries %}
       <div class="timeline">
         {% for entry in chronology_entries %}
-          <article class="timeline-item {{ entry.side }}">
+          <article class="timeline-item {{ entry.side }}{% if forloop.counter > 2 %} timeline-item--extra{% endif %}">
             <div class="timeline-point"></div>
             <div class="timeline-card">
               <div class="timeline-header">
@@ -32,6 +32,16 @@
           </article>
         {% endfor %}
       </div>
+      <button
+        type="button"
+        class="chronology-toggle"
+        data-expanded="false"
+        data-show-label="{% trans 'Open all points' %}"
+        data-hide-label="{% trans 'Show fewer points' %}"
+      >
+        <span>{% trans 'Open all points' %}</span>
+        <i aria-hidden="true"></i>
+      </button>
     {% else %}
       <p>{% trans 'Timeline of my development journey, key projects, and growth as a backend engineer.' %}</p>
     {% endif %}

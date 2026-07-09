@@ -118,3 +118,9 @@ msgstr "Проєкт не знайдено."
 
 msgid "Language selector"
 msgstr "Вибір мови"
+
+msgid "Open all points"
+msgstr "Відкрити всі пункти"
+
+msgid "Show fewer points"
+msgstr "Показати менше пунктів"
